@@ -124,6 +124,7 @@ JNIEXPORT jbyteArray JNICALL Java_com_ldps_examples_BatchIterator_nativeNext(JNI
 JNIEXPORT jlong JNICALL Java_com_ldps_examples_BatchIterator_nativeCHNext(JNIEnv *, jobject, jlong executor_address) {
     Executor *executor = reinterpret_cast<Executor *>(executor_address);
     Block *column_batch = executor->next();
+    std::cout<<"column_batch ColumnCount: "<<column_batch->GetColumnCount()<<std::endl;
     return reinterpret_cast<Int64>(column_batch);
 }
 
@@ -323,7 +324,7 @@ JNIEXPORT void JNICALL Java_com_ldps_examples_Query_sqlQuery(JNIEnv *env,
     client->Execute("CREATE TABLE IF NOT EXISTS default.numbers (id UInt64, name "
                     "String) ENGINE = Memory");
 
-    /// Insert some values.
+    // Insert some values.
     {
         Block block;
 

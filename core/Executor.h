@@ -3,6 +3,7 @@
 #include <clickhouse/client.h>
 
 #include <memory>
+#include <queue>
 
 namespace clickhouse {
 
@@ -12,12 +13,13 @@ public:
     explicit Executor(const std::shared_ptr<Client> client);
     ~Executor();
 
-    std::shared_ptr<Block>selectQuery(const std::string &query);
+    void selectQuery(const std::string &query);
     bool hasNext();
     Block* next();
 
 private:
-    std::shared_ptr<Block> block_;
+    std::queue<std::shared_ptr<Block>> blocks_;
+    std::queue<std::shared_ptr<Block>> blocks_poped_;
     std::shared_ptr<Client> client_;
 };
 
