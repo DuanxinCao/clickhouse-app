@@ -174,7 +174,7 @@ JNIEXPORT jint JNICALL Java_com_ldps_examples_CHColumnVector_nativeNumNulls(JNIE
  * Method:    nativeIsNullAt
  * Signature: (IJI)Z
  */
-JNIEXPORT jboolean JNICALL Java_com_ldps_examples_CHColumnVector_nativeIsNullAt(JNIEnv *, jobject, jint, jlong, jint) {
+JNIEXPORT jboolean JNICALL Java_com_ldps_examples_CHColumnVector_nativeIsNullAt(JNIEnv *, jobject, jint row_id, jlong block_address, jint column_position) {
     // TODO
     return false;
 }
@@ -184,9 +184,9 @@ JNIEXPORT jboolean JNICALL Java_com_ldps_examples_CHColumnVector_nativeIsNullAt(
  * Method:    nativeGetBoolean
  * Signature: (IJI)Z
  */
-JNIEXPORT jboolean JNICALL Java_com_ldps_examples_CHColumnVector_nativeGetBoolean(JNIEnv *, jobject, jint, jlong, jint) {
-    // TODO
-    return false;
+JNIEXPORT jboolean JNICALL Java_com_ldps_examples_CHColumnVector_nativeGetBoolean(JNIEnv *, jobject, jint row_id, jlong block_address, jint column_position) {
+    Block *block = reinterpret_cast<Block *>(block_address);
+    return LocalBlock::instance().getBool(block, row_id, column_position);
 }
 
 /*
@@ -194,8 +194,9 @@ JNIEXPORT jboolean JNICALL Java_com_ldps_examples_CHColumnVector_nativeGetBoolea
  * Method:    nativeGetByte
  * Signature: (IJI)B
  */
-JNIEXPORT jbyte JNICALL Java_com_ldps_examples_CHColumnVector_nativeGetByte(JNIEnv *, jobject, jint, jlong, jint) {
-    // TODO
+JNIEXPORT jbyte JNICALL Java_com_ldps_examples_CHColumnVector_nativeGetByte(JNIEnv *, jobject, jint row_id, jlong block_address, jint column_position) {
+    Block *block = reinterpret_cast<Block *>(block_address);
+    return reinterpret_cast<jbyte>(LocalBlock::instance().getByte(block, row_id, column_position));
 }
 
 /*
@@ -203,8 +204,9 @@ JNIEXPORT jbyte JNICALL Java_com_ldps_examples_CHColumnVector_nativeGetByte(JNIE
  * Method:    nativeGetShort
  * Signature: (IJI)S
  */
-JNIEXPORT jshort JNICALL Java_com_ldps_examples_CHColumnVector_nativeGetShort(JNIEnv *, jobject, jint, jlong, jint) {
-    // TODO
+JNIEXPORT jshort JNICALL Java_com_ldps_examples_CHColumnVector_nativeGetShort(JNIEnv *, jobject, jint row_id, jlong block_address, jint column_position) {
+    Block *block = reinterpret_cast<Block *>(block_address);
+    return reinterpret_cast<jshort>(LocalBlock::instance().getShort(block, row_id, column_position));
 }
 
 /*
@@ -212,8 +214,9 @@ JNIEXPORT jshort JNICALL Java_com_ldps_examples_CHColumnVector_nativeGetShort(JN
  * Method:    nativeGetInt
  * Signature: (IJI)I
  */
-JNIEXPORT jint JNICALL Java_com_ldps_examples_CHColumnVector_nativeGetInt(JNIEnv *, jobject, jint, jlong, jint) {
-    return 1;
+JNIEXPORT jint JNICALL Java_com_ldps_examples_CHColumnVector_nativeGetInt(JNIEnv *, jobject, jint row_id, jlong block_address, jint column_position) {
+    Block *block = reinterpret_cast<Block *>(block_address);
+    return LocalBlock::instance().getShort(block, row_id, column_position);
 }
 
 /*
@@ -223,7 +226,7 @@ JNIEXPORT jint JNICALL Java_com_ldps_examples_CHColumnVector_nativeGetInt(JNIEnv
  */
 JNIEXPORT jlong JNICALL Java_com_ldps_examples_CHColumnVector_nativeGetLong(JNIEnv *, jobject, jint row_id, jlong block_address, jint column_position) {
     Block *block = reinterpret_cast<Block *>(block_address);
-    return LocalBlock::instance().getUint64(block, row_id, column_position);
+    return LocalBlock::instance().getInt64(block, row_id, column_position);
 }
 
 /*
@@ -231,7 +234,9 @@ JNIEXPORT jlong JNICALL Java_com_ldps_examples_CHColumnVector_nativeGetLong(JNIE
  * Method:    nativeGetFloat
  * Signature: (IJI)F
  */
-JNIEXPORT jfloat JNICALL Java_com_ldps_examples_CHColumnVector_nativeGetFloat(JNIEnv *, jobject, jint, jlong, jint) {
+JNIEXPORT jfloat JNICALL Java_com_ldps_examples_CHColumnVector_nativeGetFloat(JNIEnv *, jobject, jint row_id, jlong block_address, jint column_position) {
+    Block *block = reinterpret_cast<Block *>(block_address);
+    return LocalBlock::instance().getFloat32(block, row_id, column_position);
 }
 
 /*
@@ -239,7 +244,9 @@ JNIEXPORT jfloat JNICALL Java_com_ldps_examples_CHColumnVector_nativeGetFloat(JN
  * Method:    nativeGetDouble
  * Signature: (IJI)D
  */
-JNIEXPORT jdouble JNICALL Java_com_ldps_examples_CHColumnVector_nativeGetDouble(JNIEnv *, jobject, jint, jlong, jint) {
+JNIEXPORT jdouble JNICALL Java_com_ldps_examples_CHColumnVector_nativeGetDouble(JNIEnv *, jobject, jint row_id, jlong block_address, jint column_position) {
+    Block *block = reinterpret_cast<Block *>(block_address);
+    return LocalBlock::instance().getFloat64(block, row_id, column_position);
 }
 
 /*
