@@ -13,7 +13,7 @@ public:
         static LocalBlock localBlock;
         return localBlock;
     }
-    int64_t getInt64(Block* block,uint64_t row_id,uint64_t column_id);
+    uint64_t getUint64(Block* block,uint64_t row_id,uint64_t column_id);
     std::string getString(Block* block,uint64_t row_id,uint64_t column_id);
     bool getBool(Block* block,uint64_t row_id,uint64_t column_id);
     int8_t getByte(Block* block,uint64_t row_id,uint64_t column_id);

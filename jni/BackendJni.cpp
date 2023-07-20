@@ -227,7 +227,7 @@ JNIEXPORT jint JNICALL Java_com_ldps_examples_CHColumnVector_nativeGetInt(JNIEnv
  */
 JNIEXPORT jlong JNICALL Java_com_ldps_examples_CHColumnVector_nativeGetLong(JNIEnv *, jobject, jint row_id, jlong block_address, jint column_position) {
     Block *block = reinterpret_cast<Block *>(block_address);
-    return LocalBlock::instance().getInt64(block, row_id, column_position);
+    return LocalBlock::instance().getUint64(block, row_id, column_position);
 }
 
 /*
