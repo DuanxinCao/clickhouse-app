@@ -6,6 +6,8 @@ include(FindJava)
 include(UseJava)
 include(FindJNI)
 
+#include_directories(/usr/lib/jvm/jdk1.8.0_381/include/linux)
+#include_directories(/usr/lib/jvm/jdk1.8.0_381/include)
 include_directories(/Library/Java/JavaVirtualMachines/jdk1.8.0_321.jdk/Contents/Home/include/)
 include_directories(/Library/Java/JavaVirtualMachines/jdk1.8.0_321.jdk/Contents/Home/include/darwin)
 

@@ -17,10 +17,10 @@ void Executor::selectQuery(const std::string &query) {
         }else{
             blocks_.emplace(block);
             std::cout << "------block from clickhouse start " << std::endl;
-            for (size_t i = 0; i < block->GetRowCount(); ++i) {
-                std::cout << block->operator[](0)->As<ColumnUInt64>()->At(i) << " "
-                          << block->operator[](1)->As<ColumnString>()->At(i) << "\n";
-            }
+//            for (size_t i = 0; i < block->GetRowCount(); ++i) {
+//                std::cout << block->operator[](0)->As<ColumnUInt64>()->At(i) << " "
+//                          << block->operator[](1)->As<ColumnString>()->At(i) << "\n";
+//            }
             std::cout << "------block from clickhouse end " << std::endl;
         }
     });
