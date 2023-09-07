@@ -23,8 +23,8 @@ JNIEXPORT jint JNI_OnLoad(JavaVM *vm, void * /*reserved*/) {
         return JNI_ERR;
     }
     /// Initialize client connection.
-//    client = std::make_shared<Client>(ClientOptions().SetHost("localhost"));
-    client = std::make_shared<Client>(ClientOptions().SetHost("localhost").SetPassword("123456"));
+    client = std::make_shared<Client>(ClientOptions().SetHost("localhost"));
+//    client = std::make_shared<Client>(ClientOptions().SetHost("localhost").SetPassword("123456"));
     std::cout << "on load" << std::endl;
     return jniVersion;
 }
